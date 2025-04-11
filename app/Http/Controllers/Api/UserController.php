@@ -7,20 +7,25 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
-    public function index(): JsonResponse
+    public function index()
     {
         //retorna os dados paginados, pelo id em ordem decrescente
-        $users = User::orderBy('id', 'DESC')->paginate(2);
+        // $users = User::orderBy('id', 'DESC')->paginate(2);
 
-        //retorna os usuarios em json
-        return response()->json([
-            'message' => 'listando usuarios',
-            'users' => $users,
-        ], 200);
+        // //retorna os usuarios em json
+        // return response()->json([
+        //     'message' => 'listando usuarios',
+        //     'users' => $users,
+        // ], 200);
+
+        $user = User::get();
+        dd($user);
+        
     }
 
     //listando apenas um usuario
